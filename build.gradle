@@ -23,6 +23,12 @@ allprojects {
         google()
         jcenter()
     }
+
+    // 所有工程的build均被删除
+    task cleanBuildDir(type: Delete) {
+        delete "${projectDir}/build"
+        delete "${projectDir}/out"
+    }
 }
 
 task clean(type: Delete) {

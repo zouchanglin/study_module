@@ -332,7 +332,48 @@ dependencies {
 }
 ```
 
+# 完成参数管理器
 
+1、制定参数传递的标准
 
+2、JavaPoet  + APT生成模板代码
 
+```java
+public class OrderMainActivity$$Parameter implements ParameterGet {
+  @Override
+  public void getParameter(Object targetParameter) {
+    Order_MainActivity t = (Order_MainActivity)target;
+      
+    t.name = t.getIntent().getStringExtra("name");
+    t.age = t.getIntent().getIntExtra("age");
+    ....
+  }
+}
+```
+
+3.ParameterManager的编写：参数管理器
+
+# 完成路由管理器
+
+发送端
+
+```java
+RouterManager.getInstance()
+    .build("/order/OrderMainActivity")
+    .withString("name", "张三")
+    .withString("age", 20)
+    .navigation(this);
+```
+
+目标端
+
+```java
+@Parameter
+String name;
+
+@Parameter
+int age;
+
+ParameterManager.getInstance().loadParameter(this);
+```
 

@@ -6,7 +6,7 @@ ext {
     username = "zouchanglin"
 
     // 定义一个包名，存放APT生产的Java文件
-    packageNameForAPT = "cn.tim.customrouter_apt"
+    packageNameForAPT = "customrouter_apt"
 
     // Map
     app_android = [

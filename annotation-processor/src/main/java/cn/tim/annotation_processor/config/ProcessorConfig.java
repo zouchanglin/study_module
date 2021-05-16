@@ -26,4 +26,17 @@ public interface ProcessorConfig {
     String PATH_FILE_NAME = "ARouter$$Path$$";
 
     String GROUP_FILE_NAME = "ARouter$$Group$$";
+
+    String PARAMETER_PACKAGE = "cn.tim.annotation.Parameter";
+
+    String ROUTER_API_PARAMETER_NAME = ROUTER_API_PACKAGE_NAME + ".ParameterLoad";
+
+    String PARAMETER_METHOD_NAME = "getParameter";
+
+    String PARAMETER_TARGET_NAME = "targetParameter";
+
+    String STRING_PACKAGE_NAME = "java.lang.String";
+
+    // OrderMainActivity$$Parameter
+    String PARAMETER_FILE_NAME = "$$Parameter";
 }

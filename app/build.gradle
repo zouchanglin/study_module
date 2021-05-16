@@ -9,7 +9,7 @@ android {
     buildToolsVersion app_android.buildToolsVersion
 
     defaultConfig {
-        applicationId "cn.tim.study_module"
+        applicationId "cn.tim.app"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

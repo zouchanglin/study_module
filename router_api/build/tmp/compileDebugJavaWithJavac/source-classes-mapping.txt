@@ -1,6 +1,0 @@
-cn/tim/router_api/ARouterGroup.java
- cn.tim.router_api.ARouterGroup
-cn/tim/router_api/BuildConfig.java
- cn.tim.router_api.BuildConfig
-cn/tim/router_api/ARouterPath.java
- cn.tim.router_api.ARouterPath

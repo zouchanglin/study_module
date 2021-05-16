@@ -42,9 +42,8 @@ import cn.tim.annotation_processor.utils.ProcessorUtils;
  * 注解处理器
  */
 @AutoService(Processor.class) // 编译期绑定
-@SupportedAnnotationTypes({"cn.tim.annotation.ARouter"}) // 表示我要处理那个注解
+@SupportedAnnotationTypes({ProcessorConfig.ROUTER_PACKAGE_NAME}) // 表示我要处理那个注解
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-//@SupportedOptions({"myvalue"})
 @SupportedOptions({ProcessorConfig.MODULE_NAME, ProcessorConfig.APT_PACKAGE_NAME})
 public class ARouterProcessor extends AbstractProcessor {
 
