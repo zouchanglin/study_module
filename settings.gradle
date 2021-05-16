@@ -1,0 +1,10 @@
+include ':router_api'
+include ':annotation-processor'
+include ':annotation'
+include ':personal'
+include ':order'
+include ':common'
+include ':app'
+rootProject.name = "study_module"
+
+println "study_module(root project) > settings.gradle"

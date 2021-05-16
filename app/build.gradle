@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+}
+
+println "app > build.gradle"
+
+android {
+    compileSdkVersion app_android.compileSdkVersion
+    buildToolsVersion app_android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "cn.tim.study_module"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //这个方法接收三个非空的参数，第一个:确定值的类型；第二个:指定key的名字；第三个:传值(必须是String)
+        //为什么需要定义这个？因为src代码中有可能需要用到跨模块交互，如果是组件化模块显然不行
+        //切记:不能在android根节点，只能在defaultConfig或buildTypes节点下
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease));
+
+        // 编译参数的传递
+//        javaCompileOptions {
+//            annotationProcessorOptions{
+//                arguments = [myvalue: 'hello javapoet xxxx']
+//            }
+//        }
+        javaCompileOptions {
+            annotationProcessorOptions{
+                arguments = [moduleName: this.project.getName(), packageNameForAPT: packageNameForAPT]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':annotation')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    annotationProcessor project(':annotation-processor')
+    if(isRelease){
+        implementation project(':order')
+        implementation project(':personal')
+    }
+}

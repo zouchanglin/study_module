@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+
+// 控制台中文设置UTF-8
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}

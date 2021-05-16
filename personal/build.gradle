@@ -1,0 +1,58 @@
+if(isRelease){
+    apply plugin: 'com.android.library' // -> arr
+}else {
+    apply plugin: 'com.android.application' // -> apk
+}
+
+android {
+    compileSdkVersion app_android.compileSdkVersion
+    buildToolsVersion app_android.buildToolsVersion
+
+    defaultConfig {
+        if(!isRelease){
+            applicationId app_id.personal
+        }
+        minSdkVersion app_android.minSdkVersion
+        targetSdkVersion app_android.targetSdkVersion
+        versionCode app_android.versionCode
+        versionName app_android.versionName
+
+        testInstrumentationRunner app_android.testInstrumentationRunner
+
+        javaCompileOptions {
+            annotationProcessorOptions{
+                arguments = [moduleName: this.project.getName(), packageNameForAPT: packageNameForAPT]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // 源集 —— 用来设置Java目录或者资源目录
+    sourceSets {
+        main {
+            if(!isRelease){
+                // 如果是组件化模式，需要单独运行时
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }else {
+                // 集成化模式，整个项目打包
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':annotation')
+    annotationProcessor project(':annotation-processor')
+}

@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+
+    // 编译时期进行注解处理
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
+    compileOnly 'com.google.auto.service:auto-service:1.0-rc4'
+
+    // 帮助我们通过类调用的方式来生成Java代码[JavaPoet]
+    implementation 'com.squareup:javapoet:1.10.0'
+
+    // 依赖于注解
+    implementation project(':annotation')
+}
+
+// 控制台中文设置UTF-8
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

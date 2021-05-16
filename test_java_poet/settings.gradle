@@ -1,0 +1,5 @@
+include ':router'
+include ':annotation'
+include ':compiler'
+include ':app'
+rootProject.name = "MyJavaPoet"
